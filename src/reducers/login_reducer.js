@@ -1,10 +1,10 @@
-import { RECEIVE_MOVIES } from '../actions/example_actions'
+import { RECEIVE_MOVIES } from '../actions/login_actions'
 
 const _default = {
   movies: []
 }
 
-const ExampleReducer = (state = _default, action) => {
+const LoginReducer = (state = _default, action) => {
   Object.freeze(state);
   const copy = Object.assign({}, state);
   switch(action.type) {
@@ -16,4 +16,4 @@ const ExampleReducer = (state = _default, action) => {
   };
 };
 
-export default ExampleReducer;
+export default LoginReducer;

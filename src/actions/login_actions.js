@@ -1,4 +1,4 @@
-import * as APIExampleUtil from '../util/example_util'
+import * as APILoginUtil from '../util/login_utils'
 
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 
@@ -8,7 +8,7 @@ export const receiveMovies = movies => ({
 });
 
 export const movieSearch = queryString => dispatch => (
-  APIExampleUtil.movieSearch(queryString).then(
+  APILoginUtil.movieSearch(queryString).then(
     resp => dispatch(receiveMovies(resp.results))
   )
 );
