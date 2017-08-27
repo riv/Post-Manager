@@ -1,12 +1,13 @@
 import Login from './login';
 import { connect } from 'react-redux';
-import { movieSearch } from '../../actions/login_actions';
+import { movieSearch, getLoginStatus } from '../../actions/login_actions';
 
-const mapStateToProps = ({ example }) => ({
-  movies: example.movies
+const mapStateToProps = (store) => ({
+  movies: store.login.movies
 });
 
 const mapDispatchToProps = dispatch => ({
+  getLoginStatus: () => dispatch(getLoginStatus())
 });
 
 export default connect(

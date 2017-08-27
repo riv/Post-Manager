@@ -5,6 +5,14 @@ class Login extends React.Component {
     super(props);
   }
 
+  componentWillMount() {
+
+  }
+
+  componentDidMount() {
+    this.props.getLoginStatus();
+  }
+
   render () {
     return (
       <div>Example Component Goes here!</div>

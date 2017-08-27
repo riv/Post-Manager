@@ -7,6 +7,7 @@ import Error404 from './error404';
 import './App.css';
 
 class App extends React.Component {
+
   render() {
     return(
       <div className="App">

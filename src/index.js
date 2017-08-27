@@ -5,9 +5,26 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/store';
 import './index.css';
 
-document.addEventListener('DOMContentLoaded', () => {
+let FBsdkLoaded = false;
+let DOMContentLoaded = false;
+
+const setupReact = () => {
   const store = configureStore();
   window.store = store;
   ReactDOM.render(<Root store={ store } />, document.getElementById('root'));
   registerServiceWorker();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  DOMContentLoaded = true;
+  if (FBsdkLoaded && DOMContentLoaded) {
+    setupReact();
+  }
+});
+
+document.addEventListener('fb_init', () => {
+  FBsdkLoaded = true;
+  if (FBsdkLoaded && DOMContentLoaded) {
+    setupReact();
+  }
 });
