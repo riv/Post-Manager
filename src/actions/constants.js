@@ -1,3 +1,4 @@
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const RECEIVE_LOGIN_STATUS = "RECEIVE_LOGIN_STATUS";
 export const RECEIVE_FB_SDK = "RECEIVE_FB_SDK";
+export const LOGOUT = "LOGOUT";

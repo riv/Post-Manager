@@ -1,4 +1,4 @@
-import { RECEIVE_MOVIES, RECEIVE_LOGIN_STATUS } from '../actions/constants'
+import * as constants from '../actions/constants'
 
 const _default = {
   movies: [],
@@ -9,12 +9,15 @@ const LoginReducer = (state = _default, action) => {
   Object.freeze(state);
   const copy = Object.assign({}, state);
   switch(action.type) {
-    case RECEIVE_MOVIES:
+    case constants.RECEIVE_MOVIES:
       copy.movies = action.movies;
       return copy;
-    case RECEIVE_LOGIN_STATUS:
+    case constants.RECEIVE_LOGIN_STATUS:
       copy.status = action.status;
-      return copy
+      return copy;
+    case constants.LOGOUT:
+      copy.status = {status: ''};
+      return copy;
     default:
       return state;
   };

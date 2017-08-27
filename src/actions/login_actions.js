@@ -1,15 +1,20 @@
 import * as APILoginUtil from '../util/login_utils'
-import { RECEIVE_MOVIES, RECEIVE_LOGIN_STATUS } from './constants';
+import * as constants from './constants';
 
 export const receiveMovies = movies => ({
-  type: RECEIVE_MOVIES,
+  type: constants.RECEIVE_MOVIES,
   movies
 });
 
 export const receiveLoginStatus = status => ({
-  type: RECEIVE_LOGIN_STATUS,
+  type: constants.RECEIVE_LOGIN_STATUS,
   status
-})
+});
+
+export const logout = () => ({
+  type: constants.LOGOUT,
+  data: null
+});
 
 export const movieSearch = queryString => dispatch => (
   APILoginUtil.movieSearch(queryString).then(
@@ -18,9 +23,7 @@ export const movieSearch = queryString => dispatch => (
 );
 
 export const getLoginStatus = () => dispatch => {
-  console.log(window.FB);
   window.FB.getLoginStatus(response => {
-    console.log(response);
     dispatch(receiveLoginStatus(response));
   })
 };
