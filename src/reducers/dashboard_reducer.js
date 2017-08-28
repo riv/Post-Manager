@@ -3,7 +3,8 @@ import * as constants from '../actions/constants';
 const _default = {
   pages: [],
   page: {},
-  feed: []
+  feed: [],
+  unpublishedPosts: []
 };
 
 const DashboardReducer = (state = _default, action) => {

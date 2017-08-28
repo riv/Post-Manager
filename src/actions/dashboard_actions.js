@@ -50,7 +50,7 @@ export const getPage = (id, access_token) => dispatch => {
 export const getPageFeed = (id, access_token) => dispatch => {
   const params = {
     access_token,
-    fields: 'comments.limit(1),insights{post_impressions_unique},likes.limit(1).summary(true)'
+    fields: 'comments.limit(1),insights{post_impressions_unique},message,created_time,updated_time,likes.limit(1).summary(true)'
   };
   window.FB.api(`/${id}/posts`, 'get', params, (response) => {
     dispatch(receivePageFeed(response.data));
@@ -61,7 +61,7 @@ export const getUnpublishedPosts = (id, access_token) => dispatch => {
   const params = {
     access_token,
     is_published: false,
-    fields: 'message,created_time,likes.limit(1).summary(true)'
+    fields: 'message,created_time,likes.limit(1).summary(true),scheduled_publish_time'
   };
   window.FB.api(`/${id}/promotable_posts`, 'get', params, (response) => {
     dispatch(receiveUnpublishedPosts(response.data));
