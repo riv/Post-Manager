@@ -13,7 +13,8 @@ class Login extends React.Component {
   }
 
   login () {
-    window.FB.login(this.checkLoginState);
+    const scope = {scope: 'manage_pages,publish_pages,publish_actions,pages_show_list'};
+    window.FB.login(this.checkLoginState, scope);
   }
 
   render () {

@@ -4,12 +4,18 @@ import Root from './components/root';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/store';
 import './index.css';
+import { saveState, loadState } from './store/localStorage';
+import throttle from 'lodash/throttle';
 
 let FBsdkLoaded = false;
 let DOMContentLoaded = false;
 
 const setupReact = () => {
-  const store = configureStore();
+  const store = configureStore(loadState());
+  console.log(store.getState());
+  store.subscribe(throttle(() => {
+    saveState({ login: store.getState().login });
+  }, 1000));
   window.store = store;
   ReactDOM.render(<Root store={ store } />, document.getElementById('root'));
   registerServiceWorker();
