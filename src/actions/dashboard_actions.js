@@ -39,7 +39,7 @@ export const getPages = (accessToken) => dispatch => {
 
 export const getPage = (id, access_token) => dispatch => {
   const params = {
-    fieldname: 'id,name',
+    fields: 'id,name,access_token',
     access_token
   };
   window.FB.api(`/${id}`, 'get', params, (response) => {
@@ -65,5 +65,28 @@ export const getUnpublishedPosts = (id, access_token) => dispatch => {
   };
   window.FB.api(`/${id}/promotable_posts`, 'get', params, (response) => {
     dispatch(receiveUnpublishedPosts(response.data));
+  });
+}
+
+export const createPost = (message, page) => dispatch => {
+  const params = {
+    message,
+    access_token: page.access_token
+  };
+  window.FB.api(`/${page.id}/feed`, 'POST', params, (response) => {
+    dispatch(getPageFeed(page.id, page.access_token));
+  })
+}
+
+export const createScheduledPost = (message, datetime, page) => dispatch => {
+  const params = {
+    message,
+    published: false,
+    scheduled_publish_time: (datetime.getTime() / 1000) + 120,
+    access_token: page.access_token
+  };
+  window.FB.api(`/${page.id}/feed`, 'POST', params, (response) => {
+    console.log(response);
+    dispatch(getUnpublishedPosts(page.id, page.access_token));
   });
 }

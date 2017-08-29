@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import Feed from './feed';
 import Unpublished from './unpublishedPosts';
+import PostCreator from './post_creator';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class Dashboard extends React.Component {
         {this.renderSelectPage()}
         <Feed/>
         <Unpublished/>
+        <PostCreator/>
       </div>
     );
   }
