@@ -66,13 +66,16 @@ class PostCreator extends React.Component {
       <div>
         <form>
           <h3>Create post</h3>
-          <input type='text' onChange={this.updateRegularMessage} value={this.state.regularMessage}></input>
+          <label name='regularMessage'>Message</label>
+          <input type='text' name='regularMessage' onChange={this.updateRegularMessage} value={this.state.regularMessage}></input>
           <Button disabled={this.state.regularMessage === '' ? true : false} onClick={this.submitPost}>Create Post</Button>
       </form>
         <form>
           <h3>Schedule a future post</h3>
-          <input type='text' onChange={this.updateScheduledMessage} value={this.state.scheduledMessage}></input>
-          <Datetime onChange={this.updateDatetime} isValidDate={this.isValidDate}/>
+          <label name='scheduledMessage'>Message</label>
+          <input type='text' name='scheduledMessage' onChange={this.updateScheduledMessage} value={this.state.scheduledMessage}></input>
+          <label name='scheduledTime'>Datetime</label>
+          <Datetime name='scheduledTime' onChange={this.updateDatetime} isValidDate={this.isValidDate}/>
           <Button disabled={this.state.scheduledMessage === '' || !this.state.scheduledPublishTime ? true : false} onClick={this.submitScheduledPost}>Schedule Post</Button>
       </form>
       </div>

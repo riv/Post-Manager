@@ -1,0 +1,28 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-title {
+  margin-left: 20px;
+}
+
+.pageSelector, .logoutButton {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.pageSelector {
+  margin-right: 10px;
+}
+
+.logoutButton {
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+#dropdown-basic-0 {
+  border: 1px solid gray;
+  box-shadow: none;
+  background-color: white;
+}

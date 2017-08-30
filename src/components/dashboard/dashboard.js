@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import Feed from './feed';
 import Unpublished from './unpublishedPosts';
 import PostCreator from './post_creator';
@@ -13,6 +13,7 @@ class Dashboard extends React.Component {
 
     //render functions
     this.renderSelectPage = this.renderSelectPage.bind(this);
+    this.renderNav = this.renderNav.bind(this);
   }
 
   componentDidMount() {
@@ -35,23 +36,38 @@ class Dashboard extends React.Component {
   renderSelectPage() {
     const { pages } = this.props;
     return(
-      <div>
-        {pages !== [] ? pages.map((page) =>
-          <Button key={page.id}
-                  onClick={this.loadPageData(page)}>{`${page.name}`}
-          </Button>) : <p>You have no pages, please create a page</p>}
-      </div>
+      <DropdownButton className="pageSelector" disabled={ !pages ? "disabled" : ""} bsStyle={'Default'} title={'Your Pages'} id={`dropdown-basic-0`}>
+        {
+          pages.map((page) =>
+          <MenuItem key={page.id}
+             onClick={this.loadPageData(page)}>{`${page.name}`}
+          </MenuItem>
+          )
+        }
+      </DropdownButton>
+    );
+  }
+
+  renderNav() {
+    return (
+      <nav>
+        <div className="nav-title">
+          <h2>Dashboard</h2>
+        </div>
+        <div className="nav-right">
+          {this.renderSelectPage()}
+          <Button className="logoutButton" onClick={this.logout}>
+            Logout
+          </Button>
+        </div>
+      </nav>
     );
   }
 
   render () {
     return(
       <div>
-        <h1>Dashboard</h1>
-        <Button onClick={this.logout}>
-          Logout
-        </Button>
-        {this.renderSelectPage()}
+        {this.renderNav()}
         <Feed/>
         <Unpublished/>
         <PostCreator/>
