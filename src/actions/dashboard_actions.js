@@ -81,8 +81,8 @@ export const createPost = (message, page) => dispatch => {
 export const createScheduledPost = (message, datetime, page) => dispatch => {
   const params = {
     message,
-    published: false,
-    scheduled_publish_time: (datetime.getTime() / 1000) + 120,
+    published: false, 
+    scheduled_publish_time: (datetime.getTime() / 1000),
     access_token: page.access_token
   };
   window.FB.api(`/${page.id}/feed`, 'POST', params, (response) => {

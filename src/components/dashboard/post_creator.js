@@ -4,6 +4,7 @@ import Datetime from 'react-datetime';
 import { Button } from 'react-bootstrap';
 import { createPost, createScheduledPost } from '../../actions/dashboard_actions';
 import './react-datetime.css';
+import './dashboard.css';
 
 class PostCreator extends React.Component {
   constructor(props) {

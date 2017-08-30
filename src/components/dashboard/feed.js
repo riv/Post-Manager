@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './dashboard.css';
 
 class Feed extends React.Component {
   constructor(props) {

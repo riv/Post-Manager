@@ -12,7 +12,6 @@ let DOMContentLoaded = false;
 
 const setupReact = () => {
   const store = configureStore(loadState());
-  console.log(store.getState());
   store.subscribe(throttle(() => {
     saveState({ login: store.getState().login });
   }, 1000));

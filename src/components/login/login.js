@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import './login.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -19,9 +20,10 @@ class Login extends React.Component {
 
   render () {
     return (
-      <div>
-        <Button onClick={this.login}>
-          LOGIN INTO FACEBOOK
+      <div id="loginContainer">
+        <h2 id="title">Facebook Page Post Manager</h2>
+        <Button onClick={this.login} id='loginButton'>
+          FACEBOOK LOGIN
         </Button>
       </div>
     );

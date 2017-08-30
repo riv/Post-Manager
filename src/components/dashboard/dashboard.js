@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import Feed from './feed';
 import Unpublished from './unpublishedPosts';
 import PostCreator from './post_creator';
+import './dashboard.css';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Dashboard extends React.Component {
     return () => {
       this.props.getPage(id, access_token);
       this.props.getPageFeed(id, access_token);
+      this.props.getUnpublishedPosts(id, access_token);
     };
   }
 
