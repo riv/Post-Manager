@@ -1,0 +1,28 @@
+.postCreatorContainer {
+  width: 50%
+}
+
+.formInput {
+  display: flex;
+}
+
+.formInput textarea {
+  width: 80%;
+  height: 50px;
+}
+
+.scheduledForm {
+  display: flex;
+}
+
+.scheduledInputs {
+  width: 80%;
+}
+
+.scheduledInputs textarea {
+  width: 100%;
+}
+
+.scheduledSubmit {
+  white-space: normal;
+}

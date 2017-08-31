@@ -26,3 +26,42 @@ nav {
   box-shadow: none;
   background-color: white;
 }
+
+.mainContentContainer {
+  display: flex;
+}
+
+.postViewer nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modeSelector {
+  border: 1px solid black;
+  border-radius: 2px;
+  width: 50%;
+}
+
+.modeOn {
+  background-color: black;
+  color: white;
+}
+
+.postViewer {
+  width: 50%;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.postsContainer {
+  border: 1px solid black;
+  height: 500px;
+  overflow: scroll;
+}
+
+.postBox {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}

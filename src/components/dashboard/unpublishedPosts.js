@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Media } from 'react-bootstrap';
 
 class UnpublishedPosts extends React.Component {
   constructor(props) {
@@ -8,26 +9,28 @@ class UnpublishedPosts extends React.Component {
   }
 
   renderPost (post) {
-    const scheduledPublishTime = new Date(post.scheduled_publish_time * 1000)
+    const scheduledPublishTime = new Date(post.scheduled_publish_time * 1000);
+    const readifyDate = (dateStr) => ((new Date(dateStr)).toLocaleString());
     return(
-      <li key={post.id}>
-        <ul>
-          <li>Id: {post.id}</li>
-          <li>Message: {post.message}</li>
-          <li>Create Time: {post.created_time}</li>
-          <li>Scheduled Publish Time: {scheduledPublishTime.toLocaleString()}</li>
-        </ul>
-      </li>
+      <div key={post.id} className="postBox">
+        <Media>
+         <Media.Left>
+           <p>Post Id: {post.id}</p>
+           <p>Create Time: {readifyDate(post.created_time)}</p>
+           <p>Scheduled Publish Time: {scheduledPublishTime.toLocaleString()}</p>
+          </Media.Left>
+          <Media.Body>
+            <Media.Heading>{post.message}</Media.Heading>
+          </Media.Body>
+        </Media>
+      </div>
     );
   }
 
   render () {
     return(
       <div>
-        <h2>Unpublished Posts</h2>
-        <ul>
-          {this.props.posts.map(post => this.renderPost(post))}
-        </ul>
+        {this.props.posts.map(post => this.renderPost(post))}
       </div>
     );
   }

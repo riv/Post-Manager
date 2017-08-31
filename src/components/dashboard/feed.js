@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './dashboard.css';
+import { Media } from 'react-bootstrap';
+import './feed.css'
 
 class Feed extends React.Component {
   constructor(props) {
@@ -9,26 +10,28 @@ class Feed extends React.Component {
   }
 
   renderPost (post) {
+    const readifyDate = (dateStr) => ((new Date(dateStr)).toLocaleString());
     return(
-      <li key={post.id}>
-        <ul>
-          <li>Id: {post.id}</li>
-          <li>Message: {post.message}</li>
-          <li>Create Time: {post.created_time}</li>
-          <li>Updated Time: {post.updated_time}</li>
-          <li>Unique Page Views: {post.insights ? post.insights.post_impressions_unique : 'less than 30'}</li>
-        </ul>
-      </li>
+      <div key={post.id} className="postBox">
+        <Media>
+         <Media.Left>
+           <p>Post Id: {post.id}</p>
+           <p>Updated Time: {readifyDate(post.updated_time)}</p>
+           <p>Create Time: {readifyDate(post.created_time)}</p>
+           <p>Unique Page Views: {post.insights ? post.insights.post_impressions_unique : 'less than 30'}</p>
+          </Media.Left>
+          <Media.Body>
+            <Media.Heading>{post.message}</Media.Heading>
+          </Media.Body>
+        </Media>
+      </div>
     );
   }
 
   render () {
     return(
-      <div>
-        <h2>Feed</h2>
-        <ul>
-          {this.props.posts.map(post => this.renderPost(post))}
-        </ul>
+      <div className='feedContainer'>
+        {this.props.posts.map(post => this.renderPost(post))}
       </div>
     );
   }

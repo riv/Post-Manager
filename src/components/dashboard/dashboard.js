@@ -14,6 +14,9 @@ class Dashboard extends React.Component {
     //render functions
     this.renderSelectPage = this.renderSelectPage.bind(this);
     this.renderNav = this.renderNav.bind(this);
+    this.state = {
+      selected: 'published'
+    }
   }
 
   componentDidMount() {
@@ -36,7 +39,7 @@ class Dashboard extends React.Component {
   renderSelectPage() {
     const { pages } = this.props;
     return(
-      <DropdownButton className="pageSelector" disabled={ !pages ? "disabled" : ""} bsStyle={'Default'} title={'Your Pages'} id={`dropdown-basic-0`}>
+      <DropdownButton className="pageSelector" disabled={ !pages ? true : false} bsStyle={'default'} title={'Your Pages'} id={`dropdown-basic-0`}>
         {
           pages.map((page) =>
           <MenuItem key={page.id}
@@ -64,13 +67,28 @@ class Dashboard extends React.Component {
     );
   }
 
+  updateSelected (type) {
+    return () => {
+      this.setState({selected: type});
+    };
+  }
+
   render () {
     return(
       <div>
         {this.renderNav()}
-        <Feed/>
-        <Unpublished/>
-        <PostCreator/>
+        <div className="mainContentContainer">
+          <div className="postViewer">
+            <nav>
+              <h2 className={this.state.selected === 'published' ? 'modeOn modeSelector' : 'modeSelector'} onClick={this.updateSelected('published')}>Published</h2>
+              <h2 className={this.state.selected === 'scheduled' ? 'modeOn modeSelector' : 'modeSelector'} onClick={this.updateSelected('scheduled')}>Scheduled</h2>
+            </nav>
+            <div className="postsContainer">
+              {this.state.selected === 'published' ? <Feed/> : <Unpublished/>}
+            </div>
+          </div>
+          <PostCreator/>
+        </div>
       </div>
     );
   }
