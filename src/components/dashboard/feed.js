@@ -22,6 +22,7 @@ class Feed extends React.Component {
           </Media.Left>
           <Media.Body>
             <Media.Heading>{post.message}</Media.Heading>
+            {post.photo_url ? <img src={post.photo_url} width={50} height={50}/> : ''}
           </Media.Body>
         </Media>
       </div>

@@ -50,12 +50,30 @@ export const getPage = (id, access_token) => dispatch => {
 export const getPageFeed = (id, access_token) => dispatch => {
   const params = {
     access_token,
-    fields: 'comments.limit(1),insights{post_impressions_unique},message,created_time,updated_time,likes.limit(1).summary(true)'
+    fields: 'comments.limit(1),insights{post_impressions_unique},object_id,message,created_time,updated_time,likes.limit(1).summary(true)'
   };
   window.FB.api(`/${id}/posts`, 'get', params, (response) => {
+    //for each of the posts that we get back, if it has object id,
+    //make call to /object_id/picture
+    //on the callback, set post.url to the url
+    // response.data.forEach(post => {
+    //   if (post.object_id){
+    //     post.photo_url = getPhotoUrl(id, access_token, post.object_id);
+    //   };
+    // });
     dispatch(receivePageFeed(response.data));
   });
 }
+
+// export const getPhotoUrl = (id, access_token, object_id) => {
+//   const params = {
+//     access_token
+//   }
+//   window.FB.api(`/${object_id}/picture`, 'get', params, (response) => {
+//     console.log(response);
+//     return response.data.url;
+//   });
+// }
 
 export const getUnpublishedPosts = (id, access_token) => dispatch => {
   const params = {
@@ -81,7 +99,7 @@ export const createPost = (message, page) => dispatch => {
 export const createScheduledPost = (message, datetime, page) => dispatch => {
   const params = {
     message,
-    published: false, 
+    published: false,
     scheduled_publish_time: (datetime.getTime() / 1000),
     access_token: page.access_token
   };
