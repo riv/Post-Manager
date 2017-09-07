@@ -5,6 +5,10 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 # Facebook Post Manager
 
+## Play around
+
+Play around with the app [here](https://riv.github.io/Post-Manager)
+
 ## Installation and run server
 1. `npm install`
 2. `npm start`
